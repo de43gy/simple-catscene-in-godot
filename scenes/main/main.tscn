@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://bd25otpw56xuw"]
+
+[ext_resource type="Texture2D" uid="uid://d2iflpxa7ri7m" path="res://icon.svg" id="1_2l0pr"]
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_ltwey"]
+[ext_resource type="Script" path="res://scenes/main/player.gd" id="1_t4rot"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qci7v"]
+size = Vector2(128, 129)
+
+[sub_resource type="Gradient" id="Gradient_ei6y0"]
+colors = PackedColorArray(0, 1, 0, 0.372549, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yjxhu"]
+gradient = SubResource("Gradient_ei6y0")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7v0gr"]
+size = Vector2(135, 652)
+
+[sub_resource type="Gradient" id="Gradient_5c6iv"]
+colors = PackedColorArray(0.879527, 0.310544, 0.781261, 1, 0.931839, 0.867979, 0.329187, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y4iax"]
+gradient = SubResource("Gradient_5c6iv")
+width = 4000
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ltwey")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(529, 318)
+script = ExtResource("1_t4rot")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_2l0pr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_qci7v")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(61, 0)
+position_smoothing_enabled = true
+
+[node name="Lever" type="Marker2D" parent="."]
+position = Vector2(3920, 281)
+
+[node name="Sprite2D" type="Sprite2D" parent="Lever"]
+texture = SubResource("GradientTexture2D_yjxhu")
+
+[node name="CutsceneTrigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger"]
+position = Vector2(899, 321)
+shape = SubResource("RectangleShape2D_7v0gr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2014, 605)
+texture = SubResource("GradientTexture2D_y4iax")
